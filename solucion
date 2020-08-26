@@ -1,0 +1,68 @@
+from tkinter import *
+
+ventana = Tk()
+ventana.geometry("320x320")
+ventana.title("Calificaciones")
+ventana.configure(background='dark turquoise')
+ventana.resizable(False, False)
+titulo = Label(ventana, text="CALCULAR NOTA FINAL", font=('Candara', 12, 'bold'), height=3 , bg="pink",fg="white")
+titulo.grid(row=0, column=1)
+
+nota_1 = Label(ventana, text="Nota 1" , bg="pink",fg="white")
+nota_1.grid(row=1, column=0)
+
+nota_2 = Label(ventana, text="Nota 2" , bg="pink",fg="white")
+nota_2.grid(row=2, column=0)
+
+nota_3 = Label(ventana, text="Nota 3", bg="pink",fg="white")
+nota_3.grid(row=3, column=0)
+
+nota_1_entry = Entry(ventana, width="8")
+nota_1_entry.grid(row=1, column=1)
+
+nota_2_entry = Entry(ventana, width="8")
+nota_2_entry.grid(row=2, column=1)
+
+nota_3_entry = Entry(ventana, width="8")
+nota_3_entry.grid(row=3, column=1 )
+
+promedio = Label(ventana, bg='plum')
+promedio.grid(row=4, column=0)
+
+nota_prom = Label(ventana, bg='plum')
+nota_prom.grid(row=4, column=1)
+
+nota_examen = Label(ventana, text="Exámen Final",bg="pink",fg="white" )
+nota_examen.grid(row=5, column=0)
+examen_entry = Entry(ventana, width="8")
+examen_entry.grid(row=5, column=1)
+
+nota_trabajo = Label(ventana, text="Trabajo Final",bg="pink",fg="white")
+nota_trabajo.grid(row=6, column=0)
+trabajo_entry = Entry(ventana, width="8")
+trabajo_entry.grid(row=6, column=1)
+
+def calcularNota():
+    nota1 = float(nota_1_entry.get())
+    nota2 = float(nota_2_entry.get())
+    nota3 = float(nota_3_entry.get())
+    promedio_alumno = (nota1 + nota2 + nota3) / 3
+    examen_alumno = float(examen_entry.get())
+    trabajo_alumno = float(trabajo_entry.get())
+    nota_final = promedio_alumno * 0.55 + examen_alumno * 0.3 + trabajo_alumno * 0.15
+
+    promedio['text'] = 'Promedio'
+    nota_prom['text'] = f'{promedio_alumno:.2f}'
+    notaFinal['text'] = 'Nota Final'
+    final['text'] = f'{nota_final:.2f}'
+
+
+notaFinal = Label(ventana, bg='plum')
+notaFinal.grid(row=7, column=0)
+final = Label(ventana,bg='plum')
+final.grid(row=7, column=1)
+
+calcular = Button(ventana, text="Calcular", command=calcularNota, bg="black",fg="white")
+calcular.place(x=133, y=245)
+
+ventana.mainloop()
